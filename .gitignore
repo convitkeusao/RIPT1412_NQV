@@ -42,3 +42,5 @@ android/local.properties
 # Environment variables & Secrets (Bỏ qua file chứa thông tin mật nếu sau này có dùng)
 .env
 .env.local
+
+android/app/.cxx/
