@@ -3,6 +3,11 @@ import {
     fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react';
 
+type ForecastParams = {
+    lat: number;
+    lon: number;
+};
+
 export const weatherApi = createApi({
     reducerPath: 'weatherApi',
 
@@ -11,50 +16,35 @@ export const weatherApi = createApi({
     }),
 
     endpoints: builder => ({
-
-        // Weather
-        getForecast: builder.query({
+        getForecast: builder.query<any, ForecastParams>({
             query: ({ lat, lon }) =>
-                `api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m`,
-        }),
-
-        // Historical
-        getHistorical: builder.query({
-            query: ({ lat, lon, start_date, end_date }) =>
-                `api.open-meteo.com/v1/archive?latitude=${lat}&longitude=${lon}&start_date=${start_date}&end_date=${end_date}&daily=temperature_2m_max&timezone=auto`,
-        }),
-
-        // Elevation
-        getElevation: builder.query({
-            query: ({ lat, lon }) =>
-                `api.open-meteo.com/v1/elevation?latitude=${lat}&longitude=${lon}`,
-        }),
-
-        // Air Quality
-        getAirQuality: builder.query({
-            query: ({ lat, lon }) =>
-                `air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=pm2_5,carbon_monoxide`,
-        }),
-
-        // Flood
-        getFlood: builder.query({
-            query: ({ lat, lon }) =>
-                `flood-api.open-meteo.com/v1/flood?latitude=${lat}&longitude=${lon}&daily=river_discharge`,
-        }),
-
-        // Marine
-        getMarine: builder.query({
-            query: ({ lat, lon }) =>
-                `marine-api.open-meteo.com/v1/marine?latitude=${lat}&longitude=${lon}&hourly=wave_height,wave_direction`,
+                `api.open-meteo.com/v1/forecast` +
+                `?latitude=${lat}` +
+                `&longitude=${lon}` +
+                `&current=` +
+                `temperature_2m,` +
+                `relative_humidity_2m,` +
+                `apparent_temperature,` +
+                `weather_code,` +
+                `wind_speed_10m,` +
+                `is_day` +
+                `&hourly=` +
+                `temperature_2m,` +
+                `precipitation_probability,` +
+                `weather_code` +
+                `&daily=` +
+                `weather_code,` +
+                `temperature_2m_max,` +
+                `temperature_2m_min,` +
+                `precipitation_probability_max,` +
+                `sunrise,` +
+                `sunset` +
+                `&timezone=auto` +
+                `&forecast_days=7`,
         }),
     }),
 });
 
 export const {
     useGetForecastQuery,
-    useGetHistoricalQuery,
-    useGetElevationQuery,
-    useGetAirQualityQuery,
-    useGetFloodQuery,
-    useGetMarineQuery,
 } = weatherApi;
