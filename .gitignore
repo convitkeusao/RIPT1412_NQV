@@ -1,46 +1,77 @@
-# Node modules (Thư viện nặng nhất, bắt buộc bỏ qua)
+# ==============================
+# Node
+# ==============================
+
 node_modules/
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-package-lock.json
-# (Nếu bạn dùng yarn thì đổi thành yarn.lock ở trên nếu muốn, nhưng thường package-lock.json hoặc yarn.lock nên giữ lại để đồng bộ phiên bản thư viện cho người khác)
 
-# Mac OS
+# ==============================
+# React Native / Metro
+# ==============================
+
+.metro-health-check*
+.bundle/
+.lock
+
+# ==============================
+# Environment / Secrets
+# ==============================
+
+.env
+.env.local
+.env.*.local
+
+# ==============================
+# macOS
+# ==============================
+
 .DS_Store
 
-# Xcode / iOS (Bỏ qua các file cache và build tự sinh của iOS)
-ios/build/
-ios/Pods/
-*.pbxuser
-*.mode1v3
-*.mode2v3
-*.perspectivev3
-xcuserdata/
-DerivedData/
-*.hmap
-*.xccache
-.swiftpm/
+# ==============================
+# Android / Gradle
+# ==============================
 
-# Android / Gradle (Bỏ qua các file build và cấu hình máy ảo local của Android)
 android/.gradle/
 android/build/
 android/app/build/
 android/local.properties
+android/app/.cxx/
+
+# ==============================
+# Android / IDE
+# ==============================
+
 .idea/
 *.iml
 .apt_generated
 .classpath
 .project
-.settings
+.settings/
+
+# ==============================
+# iOS / Xcode
+# ==============================
+
+ios/build/
+ios/Pods/
+
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+xcuserdata/
+DerivedData/
+
+*.hmap
+*.xccache
+.swiftpm/
+
+# ==============================
+# Logs
+# ==============================
+
 *.log
-
-# Watchman & Metro bundler cache
-.metro-health-check*
-.lock
-
-# Environment variables & Secrets (Bỏ qua file chứa thông tin mật nếu sau này có dùng)
-.env
-.env.local
-
-android/app/.cxx/
